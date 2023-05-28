@@ -1,12 +1,5 @@
-#include "../ecow/ecow.hpp"
+#include "build.hpp"
 
-auto rng() {
-  using namespace ecow;
-
-  auto m = unit::create<mod>("rng");
-  m->add_impl("impl");
-  return m;
-}
 int main(int argc, char **argv) {
   using namespace ecow;
 
