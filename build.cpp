@@ -1,9 +1,16 @@
 #include "../ecow/ecow.hpp"
 
-int main(int argc, char **argv) {
+auto rng() {
   using namespace ecow;
 
   auto m = unit::create<mod>("rng");
+  return m;
+}
+int main(int argc, char **argv) {
+  using namespace ecow;
 
-  return run_main(m, argc, argv);
+  auto poc = unit::create<app>("poc");
+  poc->add_ref(rng());
+  poc->add_unit<>("poc");
+  return run_main(poc, argc, argv);
 }
