@@ -23,6 +23,20 @@ public:
   }
 };
 
+class it {
+  unsigned *m_w;
+  unsigned *m_sum;
+
+public:
+  explicit constexpr it(unsigned *w, unsigned *s) : m_w{w}, m_sum{s} {}
+
+  it &operator=(unsigned w) {
+    *m_sum += w;
+    *m_sum -= *m_w;
+    *m_w = w;
+    return *this;
+  }
+};
 export template <unsigned MaxElems> class random_picker {
   static constexpr const auto max_elems = MaxElems;
 
@@ -31,20 +45,6 @@ export template <unsigned MaxElems> class random_picker {
 
 public:
   [[nodiscard]] constexpr auto operator[](unsigned elem) noexcept {
-    class it {
-      unsigned *m_w;
-      unsigned *m_sum;
-
-    public:
-      explicit constexpr it(unsigned *w, unsigned *s) : m_w{w}, m_sum{s} {}
-
-      it &operator=(unsigned w) {
-        *m_sum += w;
-        *m_sum -= *m_w;
-        *m_w = w;
-        return *this;
-      }
-    };
     return it{&m_weights[elem], &m_sum};
   }
 
