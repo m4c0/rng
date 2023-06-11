@@ -40,7 +40,7 @@ public:
 
       it &operator=(unsigned w) {
         *m_sum += w;
-        *m_sum -= w;
+        *m_sum -= *m_w;
         *m_w = w;
         return *this;
       }
