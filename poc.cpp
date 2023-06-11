@@ -4,5 +4,11 @@ import rng;
 int main() {
   using namespace rng;
   seed();
-  return randf() * rand(10);
+
+  random_picker<3> p;
+  p[0] = 10;
+  p[1] = 20;
+  p[2] = 30;
+
+  return randf() * rand(p.pick());
 }
