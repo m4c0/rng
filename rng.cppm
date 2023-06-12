@@ -49,10 +49,10 @@ public:
   }
 
   [[nodiscard]] unsigned pick() const noexcept {
-    auto r = rng::rand(max_elems);
+    auto r = rng::rand(m_sum);
     for (auto i = 0; i < max_elems; i++) {
       auto w = m_weights[i];
-      if (w < r)
+      if (w > r)
         return i;
       r -= w;
     }
