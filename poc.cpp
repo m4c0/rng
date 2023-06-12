@@ -7,8 +7,7 @@ int main() {
   seed();
 
   random_picker<3> p;
-  p[0] = 10;
-  p[1] = 20;
+  p[0] = p[1] = 20;
   p[2] = 30;
 
   unsigned x[3]{};

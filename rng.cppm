@@ -27,13 +27,22 @@ class it {
   unsigned *m_w;
   unsigned *m_sum;
 
+  void set_value(unsigned w) {
+    *m_sum += w;
+    *m_sum -= *m_w;
+    *m_w = w;
+  }
+
 public:
   explicit constexpr it(unsigned *w, unsigned *s) : m_w{w}, m_sum{s} {}
 
   it &operator=(unsigned w) {
-    *m_sum += w;
-    *m_sum -= *m_w;
-    *m_w = w;
+    set_value(w);
+    return *this;
+  }
+
+  it &operator=(const it &o) {
+    set_value(*o.m_w);
     return *this;
   }
 };
