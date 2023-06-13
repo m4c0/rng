@@ -41,6 +41,7 @@ public:
     return *this;
   }
 
+  // TODO: rule of five
   it &operator=(const it &o) {
     set_value(*o.m_w);
     return *this;
@@ -53,6 +54,14 @@ export template <unsigned MaxElems> class random_picker {
   unsigned m_sum{};
 
 public:
+  constexpr random_picker() = default;
+  constexpr random_picker(unsigned init_w) {
+    for (auto &w : m_weights) {
+      w = init_w;
+    }
+    m_sum = max_elems * init_w;
+  }
+
   [[nodiscard]] constexpr auto operator[](unsigned elem) noexcept {
     return it{&m_weights[elem], &m_sum};
   }
