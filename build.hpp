@@ -2,8 +2,5 @@
 
 auto rng() {
   using namespace ecow;
-
-  auto m = unit::create<mod>("rng");
-  m->add_impl("impl");
-  return m;
+  return unit::create<mod>("rng");
 }
