@@ -1,3 +1,4 @@
+#pragma leco tool
 #include <stdio.h>
 
 import rng;

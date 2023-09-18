@@ -1,4 +1,4 @@
-#pragma ecow add_impl impl
+#pragma leco add_impl impl
 export module rng;
 
 namespace rng {
