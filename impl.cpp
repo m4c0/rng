@@ -2,7 +2,7 @@ module;
 #include <stdlib.h>
 #include <time.h>
 
-module rng:impl;
+module rng;
 
 namespace rng {
 void seed() { srand(time(0)); }
