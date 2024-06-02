@@ -7,7 +7,7 @@ int main() {
   using namespace rng;
   seed();
 
-  random_picker<3> p;
+  random_picker p{3};
   p[0] = p[1] = 20;
   p[2] = 30;
 

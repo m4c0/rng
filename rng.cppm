@@ -1,5 +1,6 @@
 #pragma leco add_impl impl
 export module rng;
+import hai;
 
 namespace rng {
 export void seed();
@@ -48,15 +49,14 @@ public:
     return *this;
   }
 };
-export template <unsigned MaxElems> class random_picker {
-  static constexpr const auto max_elems = MaxElems;
-
-  unsigned m_weights[max_elems]{};
+export class random_picker {
+  hai::array<unsigned> m_weights{};
   unsigned m_sum{};
 
 public:
   constexpr random_picker() = default;
-  constexpr random_picker(unsigned init_w) {
+  constexpr random_picker(unsigned max_elems, unsigned init_w = 0)
+      : m_weights{max_elems} {
     for (auto &w : m_weights) {
       w = init_w;
     }
@@ -69,14 +69,14 @@ public:
 
   [[nodiscard]] unsigned pick() const noexcept {
     auto r = rng::rand(m_sum);
-    for (auto i = 0; i < max_elems; i++) {
+    for (auto i = 0; i < m_weights.size(); i++) {
       auto w = m_weights[i];
       if (w > r)
         return i;
       r -= w;
     }
     // This should never happen
-    return max_elems - 1;
+    return m_weights.size() - 1;
   }
 };
 } // namespace rng
