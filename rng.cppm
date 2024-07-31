@@ -5,8 +5,12 @@ import hai;
 namespace rng {
 export void seed();
 export void seed(unsigned s);
-export unsigned rand(unsigned max);
 export float randf();
+
+/// Random number between 0 and MAX (exclusive)
+export unsigned rand(unsigned max);
+/// Random number between 0 and MAX (inclusive)
+export unsigned rand_i(unsigned max);
 
 export class randomizer {
   unsigned x = 0x69696969;
