@@ -12,6 +12,11 @@ export unsigned rand(unsigned max);
 /// Random number between 0 and MAX (inclusive)
 export unsigned rand_i(unsigned max);
 
+/// Random number between MIN and MAX (exclusive)
+export unsigned rand(unsigned min, unsigned max) { return rand(max - min) + min; }
+/// Random number between MIN and MAX (inclusive)
+export unsigned rand_i(unsigned min, unsigned max) { return rand_i(max - min) + min; }
+
 export class randomizer {
   unsigned x = 0x69696969;
 
